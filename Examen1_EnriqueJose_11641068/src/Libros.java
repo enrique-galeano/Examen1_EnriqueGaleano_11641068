@@ -138,7 +138,7 @@ public class Libros {
 
     @Override
     public String toString() {
-        return "Libros " + "titulo " + titulo;
+        return titulo;
     }
     
 }
