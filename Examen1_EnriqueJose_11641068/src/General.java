@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author enriq
@@ -21,7 +20,7 @@ public class General extends javax.swing.JFrame {
     public General() {
         initComponents();
         b_guardar2.setEnabled(false);
-       
+
     }
 
     /**
@@ -60,6 +59,8 @@ public class General extends javax.swing.JFrame {
         cb_historia = new javax.swing.JCheckBox();
         b_guardar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jc_combo = new javax.swing.JComboBox<>();
+        b_eliminar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -81,11 +82,12 @@ public class General extends javax.swing.JFrame {
         jd_publi = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         cb_fantasia2 = new javax.swing.JCheckBox();
-        jb_romance2 = new javax.swing.JCheckBox();
-        jb_accion2 = new javax.swing.JCheckBox();
-        jb_historia2 = new javax.swing.JCheckBox();
+        cb_romance2 = new javax.swing.JCheckBox();
+        cb_accion2 = new javax.swing.JCheckBox();
+        cb_historia2 = new javax.swing.JCheckBox();
         b_guardar2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jComboBox12 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,19 +115,20 @@ public class General extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(281, 281, 281)
-                .addComponent(b_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_contraAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addComponent(tf_admin))
-                .addGap(192, 192, 192))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(281, 281, 281)
+                        .addComponent(b_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_admin, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(tf_contraAdmin))))
+                .addContainerGap(412, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,15 +259,32 @@ public class General extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Crear Usuario", jPanel6);
 
+        b_eliminar.setText("Eliminar");
+        b_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_eliminarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(233, 233, 233)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(b_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                    .addComponent(jc_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(503, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jc_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(b_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(292, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel2);
@@ -290,12 +310,17 @@ public class General extends javax.swing.JFrame {
         jLabel14.setText("Genero ");
 
         cb_fantasia2.setText("Fantasia");
+        cb_fantasia2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_fantasia2ActionPerformed(evt);
+            }
+        });
 
-        jb_romance2.setText("Romance ");
+        cb_romance2.setText("Romance ");
 
-        jb_accion2.setText("Accion");
+        cb_accion2.setText("Accion");
 
-        jb_historia2.setText("Historia");
+        cb_historia2.setText("Historia");
 
         b_guardar2.setText("Guardar Libro");
         b_guardar2.addActionListener(new java.awt.event.ActionListener() {
@@ -315,9 +340,14 @@ public class General extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(js_copias, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(js_puntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(647, 647, 647))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(js_puntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(647, 647, 647))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(js_copias, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                        .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(300, 300, 300))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -331,11 +361,11 @@ public class General extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cb_fantasia2)
                                     .addComponent(jLabel14)
-                                    .addComponent(jb_romance2))
+                                    .addComponent(cb_romance2))
                                 .addGap(16, 16, 16)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jb_historia2)
-                                    .addComponent(jb_accion2)))))
+                                    .addComponent(cb_historia2)
+                                    .addComponent(cb_accion2)))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,11 +416,11 @@ public class General extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cb_fantasia2)
-                            .addComponent(jb_accion2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cb_accion2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jb_romance2)
-                            .addComponent(jb_historia2)))
+                            .addComponent(cb_romance2)
+                            .addComponent(cb_historia2)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(jLabel11))
@@ -401,10 +431,15 @@ public class General extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(js_puntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(js_copias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(js_copias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -466,7 +501,11 @@ public class General extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void b_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_entrarMouseClicked
+        for (Object p : user) {
+            if (true) {
 
+            }
+        }
     }//GEN-LAST:event_b_entrarMouseClicked
 
     private void b_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_guardarMouseClicked
@@ -519,8 +558,70 @@ public class General extends javax.swing.JFrame {
     }//GEN-LAST:event_b_guardarMouseClicked
 
     private void b_guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_guardar2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            String titulo;
+            String descrip;
+            int puntaje;
+            int copias;
+            String ge1 = "", ge2 = "", ge3 = "", ge4 = "";
+            int valor;
+            String edicion;
+            String autor;
+            Date fecha2;
+
+            titulo = jt_text.getText();
+            descrip = jta_descripcion.getText();
+            puntaje = (int) (js_puntaje.getValue());
+            copias = (int) (js_copias.getValue());
+            if (cb_fantasia2.isSelected()) {
+                ge1 = "fantasia";
+
+            }
+            if (cb_accion2.isSelected()) {
+                ge2 = "accion";
+            }
+            if (cb_historia2.isSelected()) {
+                ge3 = "historia";
+            }
+            if (cb_romance2.isSelected()) {
+                ge4 = "romance";
+            }
+            valor = Integer.parseInt(jt_Valor.getText());
+            edicion = jt_edicion.getText();
+            autor = jt_autor.getText();
+            fecha2 = jd_publi.getDate();
+            Libros lb = new Libros(titulo, descrip, puntaje, copias, ge1, ge2, ge3, ge4, valor, edicion, autor, fecha2);
+            lib.add(lb);
+            jComboBox12.addItem(lb);
+
+            jt_text.setText("");
+            jta_descripcion.setText("");
+            js_puntaje.setValue(0);
+            js_copias.setValue(0);
+            cb_fantasia2.setSelected(false);
+            cb_historia2.setSelected(false);
+            cb_accion2.setSelected(false);
+            cb_romance2.setSelected(false);
+            JOptionPane.showMessageDialog(this, "Se guardo exitosamente el libro");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ocurrio un error");
+        }
     }//GEN-LAST:event_b_guardar2ActionPerformed
+
+    private void b_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_eliminarMouseClicked
+        lib.remove(jc_combo.getSelectedIndex());
+        jc_combo.removeAll();
+        for (Object s : lib) {
+            if (s instanceof Libros) {
+                jc_combo.addItem(s);
+            }
+        }
+    }//GEN-LAST:event_b_eliminarMouseClicked
+
+    private void cb_fantasia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_fantasia2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_fantasia2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -558,14 +659,19 @@ public class General extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_eliminar;
     private javax.swing.JButton b_entrar;
     private javax.swing.JButton b_guardar;
     private javax.swing.JButton b_guardar2;
     private javax.swing.JCheckBox cb_accion;
+    private javax.swing.JCheckBox cb_accion2;
     private javax.swing.JCheckBox cb_fantasia;
     private javax.swing.JCheckBox cb_fantasia2;
     private javax.swing.JCheckBox cb_historia;
+    private javax.swing.JCheckBox cb_historia2;
     private javax.swing.JCheckBox cb_romance;
+    private javax.swing.JCheckBox cb_romance2;
+    private javax.swing.JComboBox<Object> jComboBox12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -592,9 +698,7 @@ public class General extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JCheckBox jb_accion2;
-    private javax.swing.JCheckBox jb_historia2;
-    private javax.swing.JCheckBox jb_romance2;
+    private javax.swing.JComboBox<Object> jc_combo;
     private com.toedter.calendar.JDateChooser jd_fecha;
     private com.toedter.calendar.JDateChooser jd_publi;
     private javax.swing.JSpinner js_copias;
@@ -613,4 +717,5 @@ public class General extends javax.swing.JFrame {
     private javax.swing.JTextField tf_usuario;
     // End of variables declaration//GEN-END:variables
 ArrayList<Usuario> user = new ArrayList();
+    ArrayList<Libros> lib = new ArrayList();
 }
