@@ -22,9 +22,9 @@ public class General extends javax.swing.JFrame {
 
     public General() {
         initComponents();
-        b_agregar.setEnabled(false);
-        b_eliminar.setEnabled(false);
-        b_modificar.setEnabled(false);
+        b_agregar.setEnabled(true);
+        b_eliminar.setEnabled(true);
+        b_modificar.setEnabled(true);
 
     }
 
@@ -319,6 +319,12 @@ public class General extends javax.swing.JFrame {
         cb_historia2.setText("Historia");
 
         jLabel10.setText("Titulo");
+
+        jComboBox12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox12ActionPerformed(evt);
+            }
+        });
 
         b_agregar.setText("Agregar Libro");
         b_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -675,6 +681,12 @@ public class General extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Modificar", jPanel5);
 
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+
         b_eliminar.setText("Eliminar");
         b_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -727,19 +739,7 @@ public class General extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void b_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_entrarMouseClicked
-        String user2 = tf_admin.getText();
-        String contra5 = tf_contra.getText();
-        for (Usuario us : user) {
-            if (user2.equals(admin)&&contra5.equals(admincontra)) {
-                System.out.println("Hola");
-                JOptionPane.showMessageDialog(this, "Usted ingreso como administrador");
-                b_agregar.setEnabled(true);
-                b_eliminar.setEnabled(true);
-                b_modificar.setEnabled(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Usted no es administrador");
-            }
-        }
+        
     }//GEN-LAST:event_b_entrarMouseClicked
 
     private void b_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_guardarMouseClicked
@@ -774,6 +774,7 @@ public class General extends javax.swing.JFrame {
             }
             Usuario u = new Usuario(usuario, contra, fecha, numero, correo, nombreCom, g1, g2, g3, g4);
             user.add(u);
+            
             tf_contra.setText("");
             tf_contra.setText("");
             jd_fecha.setDate(null);
@@ -792,6 +793,9 @@ public class General extends javax.swing.JFrame {
     }//GEN-LAST:event_b_guardarMouseClicked
 
     private void b_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_eliminarMouseClicked
+        for (Libros lg : lib) {
+            eliminar.addItem(lg);
+        }
         int indice = eliminar.getSelectedIndex();
         lib.remove(indice);
         eliminar.removeAll();
@@ -801,6 +805,9 @@ public class General extends javax.swing.JFrame {
     }//GEN-LAST:event_b_eliminarMouseClicked
 
     private void b_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_modificarActionPerformed
+        for (Libros lb2 : lib) {
+            comboxmodi.addItem(lb2);
+        }
         int index = comboxmodi.getSelectedIndex();
         String titulo;
         String des;
@@ -889,6 +896,14 @@ public class General extends javax.swing.JFrame {
     private void comboxmodiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxmodiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboxmodiActionPerformed
+
+    private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox12ActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
